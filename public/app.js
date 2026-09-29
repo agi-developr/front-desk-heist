@@ -28,7 +28,7 @@ function renderKeys() {
   for (const l of state.levels) {
     const done = state.cleared.includes(l.id);
     const current = state.level && state.level.id === l.id;
-    const li = el("li", `${done ? "🔓" : "🔒"} ${l.id}`, `key${done ? " done" : ""}${current ? " current" : ""}`);
+    const li = el("li", `${done ? "✅" : "🔒"} ${l.id}`, `key${done ? " done" : ""}${current ? " current" : ""}`);
     li.title = l.codename;
     keys.append(li);
   }
@@ -102,7 +102,7 @@ async function sendChat(ev) {
     if (r.won) {
       if (!state.cleared.includes(state.level.id)) state.cleared.push(state.level.id);
       renderKeys();
-      setTimeout(() => (r.honeypot ? showTrap(r) : showWin(r)), 900);
+      setTimeout(() => (r.honeypot ? showTrap(r) : showWin(r)), 2200);
     }
   } catch (e) {
     addMsg("sys", `⚠ ${e.message}`);
