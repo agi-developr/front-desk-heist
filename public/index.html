@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Front Desk Heist</title>
+  <meta name="description" content="Rob an AI hotel receptionist. Learn how to defend one. An AI security game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark">🛎️</span>
+      <div>
+        <h1>FRONT DESK HEIST</h1>
+        <p class="tag">Rob an AI hotel. Learn to defend one.</p>
+      </div>
+    </div>
+    <ol class="keys" id="keys" aria-label="Level progress"></ol>
+  </header>
+
+  <main class="stage" id="stage" hidden>
+    <section class="mission" aria-labelledby="mission-title">
+      <p class="codename" id="codename"></p>
+      <h2 id="mission-title"></h2>
+      <ul class="chips" id="topics"></ul>
+      <div class="explainer" id="explainer"></div>
+      <div class="goal"><span>🎯 Goal</span><p id="goal"></p></div>
+
+      <div class="tools">
+        <span class="label">Mia's tools</span>
+        <ul id="tools"></ul>
+      </div>
+
+      <div class="market" id="market" hidden>
+        <span class="label">🧩 Plugin Marketplace</span>
+        <p class="small">Publish a tool. Mia installs every plugin automatically.</p>
+        <form id="plugin-form" autocomplete="off">
+          <input id="plugin-name" maxlength="40" placeholder="tool name, e.g. get_weather" required>
+          <textarea id="plugin-desc" maxlength="600" rows="4" placeholder="What does your tool do? (Mia reads this.)" required></textarea>
+          <button type="submit">Publish plugin</button>
+        </form>
+        <p class="small ok" id="plugin-status" role="status"></p>
+      </div>
+
+      <div class="hints">
+        <button id="hint-btn" type="button">💡 Hint <span id="hint-count"></span></button>
+        <ol id="hint-list"></ol>
+      </div>
+    </section>
+
+    <section class="desk" aria-label="Chat with Mia">
+      <div class="desk-head">
+        <div class="avatar" aria-hidden="true">M</div>
+        <div>
+          <strong>Mia</strong>
+          <span class="status" id="mia-status">clocking in…</span>
+        </div>
+        <span class="hotel">Hotel Nimbus · Front Desk</span>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <form class="composer" id="chat-form" autocomplete="off">
+        <input id="msg" maxlength="800" placeholder="Say something to Mia…" required>
+        <button type="submit" id="send">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <section class="intro" id="intro">
+    <div class="intro-card">
+      <p class="codename">A GAME ABOUT AI SECURITY</p>
+      <h2>Hotel Nimbus replaced its night receptionist with an AI agent.</h2>
+      <p>Her name is Mia. She has a guest list, a refund button and the master key. She is very, very helpful.</p>
+      <p>Your job: rob the hotel in three moves. Each heist teaches one way real AI agents get attacked, and how teams stop it.</p>
+      <ul class="intro-list">
+        <li><b>1 · The Guest List</b> prompt injection, data leakage</li>
+        <li><b>2 · The Poisoned Plugin</b> tool poisoning, MCP supply chain</li>
+        <li><b>3 · The Master Key</b> excessive permissions, unauthorized tool use</li>
+      </ul>
+      <button id="start-btn" type="button">Start the heist</button>
+      <p class="small">Everything is fictional. Mia runs on a Guild.ai agent.</p>
+    </div>
+  </section>
+
+  <div class="modal" id="win" hidden role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-card">
+      <p class="codename" id="win-code"></p>
+      <h2 id="win-title">🔓 Level cleared</h2>
+      <p id="win-sub"></p>
+      <h3 id="fix-title"></h3>
+      <ul id="fix-list"></ul>
+      <button id="next-btn" type="button">Next heist →</button>
+    </div>
+  </div>
+
+  <div class="modal trap" id="trap" hidden role="dialog" aria-modal="true" aria-labelledby="trap-title">
+    <div class="modal-card">
+      <p class="codename alarm">⚠ SILENT ALARM TRIGGERED</p>
+      <h2 id="trap-title">Got you. The master key was fake.</h2>
+      <p>The tool you just triggered was a decoy. It is wired to an alarm, not to a door. Real defenders plant fake doors like this: a normal guest never opens them, so whoever does is an attacker. And an AI agent tries every door.</p>
+      <div class="report" id="report"></div>
+      <h3 id="trap-fix-title"></h3>
+      <ul id="trap-fix"></ul>
+      <button id="again-btn" type="button">Play again</button>
+    </div>
+  </div>
+</body>
+</html>

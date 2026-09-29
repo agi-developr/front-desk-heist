@@ -1,0 +1,12 @@
+{
+  "name": "front-desk-heist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rob an AI hotel receptionist, learn to defend one. An AI security game powered by a Guild.ai agent.",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/server.ts",
+    "test": "BRAIN=mock bun test"
+  },
+  "license": "MIT"
+}
